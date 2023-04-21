@@ -1,6 +1,6 @@
 #!/bin/bash
 github_username="philopaterwaheed"
-github_password="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"
+github_password="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"
 github_repository="simple_shell"
 commit_message="commit_message"
 
