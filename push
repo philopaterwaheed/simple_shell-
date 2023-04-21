@@ -1,4 +1,5 @@
 #!/bin/bash
+pd
 github_username="philopaterwaheed"
 github_password="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"
 github_repository="simple_shell"
