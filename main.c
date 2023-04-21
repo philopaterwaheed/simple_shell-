@@ -15,8 +15,6 @@ int main(void)
         if (line)
         {
             arguments = token(line);
-            if (_strcmp (arguments [0] , "exit") == 0)
-                __exit(arguments) ;
             exe (arguments);
             free(line);
             free(arguments);
