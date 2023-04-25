@@ -13,18 +13,18 @@ char *location(char *command)
 char *path, *path_c, *path_t, *file;
 int len, dlen;
 struct stat buffer;
-path = getenv("PATH");
-path_c = strdup(path);
-len = strlen(command);
+path = _getenv("PATH");
+path_c = _strdup(path);
+len = _strlen(command);
 path_t = strtok(path_c, ":");
 while (path_t)
 {
 dlen = strlen(path_t);
 file = malloc(len + dlen + 2);
-strcpy(file, path_t);
-strcat(file, "/");
-strcat(file, command);
-strcat(file, "\0");
+_strcpy(file, path_t);
+_strcat(file, "/");
+_strcat(file, command);
+_strcat(file, "\0");
 if (stat(file, &buffer) == 0)
 {
 free(path_c);
@@ -43,3 +43,18 @@ return (command);
 }
 return (NULL);
 }
+/*
+       ,___          .-;'
+       `"-.`\_...._/`.`
+    ,      \        /
+ .-' ',    / ()   ()\
+`'._   \  /()    .  (|
+    > .' ;,     -'-  /
+   / <   |;,     __.;
+   '-.'-.|  , \    , \
+      `>.|;, \_)    \_)
+       `-;     ,    /
+          \    /   <
+           '. <`'-,_)
+        jgs '._)
+*/
