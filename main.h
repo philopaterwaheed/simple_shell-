@@ -47,6 +47,7 @@ char *_getenv(char *name);
 void _eputs(char *);
 int array_size(char **array);
 void parse(char **args);
+int _putenv(char *string);
 void dollar(char **args);
 void cd(void *argument);
 void setenv_(void *argument);
@@ -57,3 +58,4 @@ char *_strchr(char *str, int ch);
 int  set_env_variable(char *name, char *value, int overwrite);
 int _unsetenv(char *name);
 #endif
+

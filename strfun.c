@@ -1,28 +1,38 @@
 #include "main.h"
+/**
+* strfind - Compares two strings byte-by-byte
+* @str: The first string to compare
+* @ch: The second string to compare
+* @index: The maximum number of bytes to compare
+* Return: 0 if the strings are equal
+*/
 
 
-char* strfind(char* str, char ch, int index)
+char *strfind(char *str, char ch, int index)
 {
-char* start = str + index;
-while (*str && *str != ch) {
-    str++; 
+char *start = str + index;
+while (*str && *str != ch)
+{
+	str++;
 }
 
-if (*str) {
-    char* result;
-    char* end ;
-    str++; 
-    end = str;
-    
-    while (*end) end++; 
-    result = malloc(end - start + 1);
-    _memcpy(result, start, end - start); 
-    result[end - start] = 0; 
-    return result; 
+if (*str)
+{
+	char *result;
+	char *end;
+
+	str++;
+	end = str;
+
+	while (*end)
+	end++;
+	result = malloc(end - start + 1);
+	_memcpy(result, start, end - start);
+	result[end - start] = 0;
+	return (result);
 }
 
-return NULL; 
-    
+return (NULL);
 }
 /**
 * _strcat - adds a string
@@ -41,76 +51,51 @@ char *_strcat(char *dest, char *src)
 	*dest = 0;
 	return (r);
 }
-char * _strappened(char* dest, char ch)
+/**
+* _strappened - Compares two strings byte-by-byte
+* @dest: detneation
+* @ch: The second string to compare
+* Return: 0 if the strings are equal
+*/
+
+char *_strappened(char *dest, char ch)
 {
-    char *r = dest;
-    while (*dest != 0)
-        dest++;
-    *dest = ch;
-    dest++;
-    dest = 0;
-    return (r);
+	char *r = dest;
+
+	while (*dest != 0)
+		dest++;
+	*dest = ch;
+	dest++;
+	dest = 0;
+	return (r);
 }
+/**
+* _strdup - Compares two strings byte-by-byte
+* @s: The first string to compare
+* Return: 0 if the strings are equal
+*/
 
 char *_strdup(char *s)
 {
-    size_t len = _strlen(s) + 1;
-    char *p = malloc(len);
-    if (p == NULL) {
-        return NULL;
-    }
-    memcpy(p, s, len);
-    return p;
-}
+	size_t len = _strlen(s) + 1;
+	char *p = malloc(len);
 
-
-char *_strchr( char *str, int ch) {
-    while (*str != '\0') {
-        if (*str == (char) ch) {
-            return (char *) str;
-        }
-        str++;
-    }
-    return NULL;
+	if (p == NULL)
+	{
+		return (NULL);
+	}
+	memcpy(p, s, len);
+	return (p);
 }
-/*
-quu..__
- $$$b  `---.__
-  "$$b        `--.                          ___.---uuudP
-   `$$b           `.__.------.__     __.---'      $$$$"              .
-     "$b          -'            `-.-'            $$$"              .'|
-       ".                                       d$"             _.'  |
-         `.   /                              ..."             .'     |
-           `./                           ..::-'            _.'       |
-            /                         .:::-'            .-'         .'
-           :                          ::''\          _.'            |
-          .' .-.             .-.           `.      .'               |
-          : /'$$|           .@"$\           `.   .'              _.-'
-         .'|$u$$|          |$$,$$|           |  <            _.-'
-         | `:$$:'          :$$$$$:           `.  `.       .-'
-         :                  `"--'             |    `-.     \
-        :##.       ==             .###.       `.      `.    `\
-        |##:                      :###:        |        >     >
-        |#'     `..'`..'          `###'        x:      /     /
-         \                                   xXX|     /    ./
-          \                                xXXX'|    /   ./
-          /`-.                                  `.  /   /
-         :    `-  ...........,                   | /  .'
-         |         ``:::::::'       .            |<    `.
-         |             ```          |           x| \ `.:``.
-         |                         .'    /'   xXX|  `:`M`M':.
-         |    |                    ;    /:' xXXX'|  -'MMMMM:'
-         `.  .'                   :    /:'       |-'MMMM.-'
-          |  |                   .'   /'        .'MMM.-'
-          `'`'                   :  ,'          |MMM<
-            |                     `'            |tbap\
-             \                                  :MM.-'
-              \                 |              .''
-               \.               `.            /
-                /     .:::::::.. :           /
-               |     .:::::::::::`.         /
-               |   .:::------------\       /
-              /   .''               >::'  /
-              `',:                 :    .'
-                                   `:.:' Tim Park
-*/
+char *_strchr(char *str, int ch)
+{
+	while (*str != '\0')
+	{
+		if (*str == (char) ch)
+		{
+			return ((char *) str);
+		}
+		str++;
+	}
+	return (NULL);
+}

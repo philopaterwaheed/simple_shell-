@@ -103,15 +103,22 @@ set_env_variable("PWD", new_dir, 1);
 void __exit(void *argument)
 {
 char **arguments = (char **)argument;
-if (arguments[1])
+if (arguments[1] && !arguments[2])
 {
 int *num;
 num = ctoi(arguments[1]);
 if (num)
 _exit(*num);
+else if (array_size(arguments) > 2)
+{
+	_eputs("too many arguments");
+	exit(2);
+}
 else
 {
-printf("exit: %s: numeric argument required", arguments[1]);
+_eputs("exit: ");
+_eputs(arguments[1]);
+_eputs(": numeric argument required");
 free(num);
 exit(2);
 }

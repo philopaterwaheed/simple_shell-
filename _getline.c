@@ -1,4 +1,8 @@
 #include "main.h"
+/**
+* _getline - Reads an entire line from a file descriptor
+* Return: A pointer to the read line, or NULL on failure or end of file
+*/
 char *_getline()
 {
 char *line = " ";
@@ -21,10 +25,6 @@ if (line_read == -1)
 return (NULL);
 }
 }
-/**
-* takes a  poninter to char* to store  the line and a size_t pointer
-* to store the size of the line and stdin is the way to get it
-**/
 if (line_read == -1 && !piped)
 {
 _eputs("Exiting shell....\n");

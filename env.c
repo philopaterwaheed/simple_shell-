@@ -24,19 +24,25 @@ env++;
  */
 char *_getenv(char *name)
 {
-int i;
-for (i = 0; environ[i] != NULL; i++)
-{
-char *var = environ[i];
-int j;
-for (j = 0; name[j] != '\0' && var[j] == name[j]; j++)
-if (name[j] == '\0' && var[j] == '=')
-{
-char *value = &var[j + 1];
-return (value);
-}
-}
-return (NULL);
+	int i;
+
+	for (i = 0; environ[i] != NULL; i++)
+	{
+	char *var = environ[i];
+	int j;
+
+	for (j = 0; name[j] != '\0' && var[j] == name[j]; j++)
+	{
+	}
+
+	if (name[j] == '\0' && var[j] == '=')
+	{
+		char *value = &var[j + 1];
+
+		return (value);
+	}
+	}
+	return (NULL);
 }
 /**
  * set_env_variable - sets the value of an environment variable
@@ -65,7 +71,7 @@ if (var == NULL)
 return (-1);
 }
 sprintf(var, "%s=%s", name, value);
-result = putenv(var);
+result = _putenv(var);
 if (result != 0)
 {
 free(var);
@@ -109,4 +115,34 @@ new_env[j++] = environ[i];
 new_env[j] = NULL;
 environ = new_env;
 return (0);
+}
+/**
+ * _putenv - prints the current environment
+ * @string: unused parameter
+ *
+ * Return: Nothing
+ */
+int _putenv(char *string)
+{
+	char **env = environ;
+	size_t len = _strlen(string);
+	char *dup = malloc(len + 1);
+
+	if (!dup)
+	{
+		return (-1);
+	}
+	_memcpy(dup, string, len + 1);
+	while (*env)
+	{
+	if (!_strncmp(*env, string, len) && (*env)[len] == '=')
+	{
+		*env = dup;
+		return (0);
+	}
+	env++;
+	}
+	*env++ = dup;
+	*env = NULL;
+	return (0);
 }
