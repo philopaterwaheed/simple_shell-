@@ -87,6 +87,12 @@ char *_strdup(char *s)
 	memcpy(p, s, len);
 	return (p);
 }
+/**
+* _strchr - Compares two strings byte-by-byte
+* @str: detneation
+* @ch: The second string to compare
+* Return: 0 if the strings are equal
+*/
 char *_strchr(char *str, int ch)
 {
 	while (*str != '\0')
