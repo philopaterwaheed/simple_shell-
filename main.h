@@ -1,6 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
-
+#ifndef PHILO
+#define PHILO
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -18,9 +17,7 @@
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_ARGUMENTS 64
 #define MAX_ENV_VARIABLES 1024
-
 extern char **environ;
-
 int _putchar(char c);
 char *_getline();
 char **token(char *line);
@@ -31,7 +28,7 @@ void spexe(int index, void *arg);
 int sp(char *argument);
 void echo(void *arguments);
 void __exit(void *argument);
-char *strfind(char *s, char c, int n);
+char *strfind(char *, char, int);
 int *ctoi(char *);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
@@ -40,23 +37,23 @@ char *_strdup(char *s);
 char *_memcpy(char *dest, char *src, unsigned int n);
 int _strcmp(const char *str1, const char *str2);
 char *_strncpy(char *dest, char *src, int n);
-void str_replace(char *str, const char *substr, const char
-*new_substr, size_t start, size_t end);
+void str_replace
+(char *str, const char *substr, const char *new_substr,
+size_t start, size_t end);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strappened(char *str, char ch);
 void replace_substr(char *str, char *substr, char *replace);
-char *getenv(char *name);
-void eputs(char *);
+char *_getenv(char *name);
+void _eputs(char *);
 int array_size(char **array);
 void parse(char **args);
 void dollar(char **args);
 void cd(void *argument);
-void setenv(void *argument);
+void setenv_(void *argument);
 void print_to_stderr(const char *message);
 void replace_all(char *str, char *substr, char *replace);
-void unsetenv(void *argument);
+void unsetenv_(void *argument);
 char *_strchr(char *str, int ch);
-int set_env_variable(char *name, char *value, int overwrite);
+int  set_env_variable(char *name, char *value, int overwrite);
 int _unsetenv(char *name);
-
 #endif
