@@ -30,7 +30,7 @@ int  set_env_variable(char *name,  char *value, int overwrite) {
     int result;
     char *var ;
     if (name == NULL || name[0] == '\0' || _strchr(name, '=') != NULL) {
-        _fprintf(stderr, "setenv: invalid argument '%s'\n", name);
+        print_to_stderr( "setenv: invalid argument '%s'\n");
         return -1;
     }
 
@@ -58,7 +58,7 @@ int _unsetenv( char *name) {
     int i, j;
 
     if (name[0] == '\0' || name[0] == '\0' || _strchr(name, '=') != NULL) {
-        _fprintf(stderr, "unsetenv: invalid argument '%s'\n", name);
+        print_to_stderr( "unsetenv: invalid argument \n");
         return -1;
     }
     for (env = environ; *env != NULL; env++) {
@@ -67,7 +67,7 @@ int _unsetenv( char *name) {
 
     new_env = malloc(count * sizeof(char *));
     if (new_env == NULL) {
-        _fprintf(stderr, "unsetenv: out of memory\n");
+        print_to_stderr( "unsetenv: out of memory\n");
         return -1;
     }
     for (i = 0, j = 0; environ[i] != NULL; i++) {
@@ -79,17 +79,3 @@ int _unsetenv( char *name) {
     environ = new_env;
     return 0;
 }
-/*
-                                  ,'\
-    _.----.        ____         ,'  _\   ___    ___     ____
-_,-'       `.     |    |  /`.   \,-'    |   \  /   |   |    \  |`.
-\      __    \    '-.  | /   `.  ___    |    \/    |   '-.   \ |  |
- \.    \ \   |  __  |  |/    ,','_  `.  |          | __  |    \|  |
-   \    \/   /,' _`.|      ,' / / / /   |          ,' _`.|     |  |
-    \     ,-'/  /   \    ,'   | \/ / ,`.|         /  /   \  |     |
-     \    \ |   \_/  |   `-.  \    `'  /|  |    ||   \_/  | |\    |
-      \    \ \      /       `-.`.___,-' |  |\  /| \      /  | |   |
-       \    \ `.__,'|  |`-._    `|      |__| \/ |  `.__,'|  | |   |
-        \_.-'       |__|    `-._ |              '-.|     '-.| |   |
-                                `'                            '-._|
-*/
