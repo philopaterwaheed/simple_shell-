@@ -1,5 +1,10 @@
 #include "main.h"
-
+/**
+ * env - prints the current environment
+ * @argument: unused parameter
+ *
+ * Return: Nothing
+ */
 void env(void *argument)
 {
 char **env = environ;
@@ -11,6 +16,12 @@ _eputs("\n");
 env++;
 }
 }
+/**
+ * _getenv - gets the value of an environment variable
+ * @name: name of the variable
+ *
+ * Return: pointer to the value of the variable
+ */
 char *_getenv(char *name)
 {
 int i;
@@ -27,6 +38,14 @@ return (value);
 }
 return (NULL);
 }
+/**
+ * set_env_variable - sets the value of an environment variable
+ * @name: name of the variable
+ * @value: value to be assigned to the variable
+ * @overwrite: whether to overwrite the value of an existing variable or not
+ *
+ * Return: 0 on success, -1 on failure
+ */
 int  set_env_variable(char *name,  char *value, int overwrite)
 {
 int result;
@@ -53,6 +72,12 @@ free(var);
 }
 return (result);
 }
+/**
+ * _unsetenv - removes an environment variable
+ * @name: name of the variable
+ *
+ * Return: 0 on success, -1 on failure
+ */
 int _unsetenv(char *name)
 {
 char **env, **new_env;
