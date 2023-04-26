@@ -46,18 +46,18 @@ write(STDERR_FILENO, message, strlen(message));
  */
 int _sprintf(char *buffer, const char *format, ...)
 {
-    va_list args;
-    int count;
+	va_list args;
+	int count;
 
-    va_start(args, format);
-    count = vsprintf(buffer, format, args);
-    va_end(args);
+	va_start(args, format);
+	count = vsprintf(buffer, format, args);
+	va_end(args);
 
-    if (count < 0)
-    {
-        /* Error occurred */
-        return -1;
-    }
+	if (count < 0)
+	{
+		/* Error occurred */
+		return (-1);
+	}
 
-    return (count);
+	return (count);
 }
