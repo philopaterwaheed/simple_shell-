@@ -55,3 +55,42 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 
 	return (dest);
 }
+/**
+ * _memmove - Copies a block of memory, handling overlaps
+ *
+ * @dest: The destination buffer to copy to
+ * @src: The source buffer to copy from
+ * @n: The number of bytes to copy
+ *
+ * Return: A pointer to the destination buffer
+ */
+void *_memmove(void *dest, const void *src, size_t n)
+{
+    char *d = dest;
+    const char *s = src;
+
+    if (d == s) {
+        return d;
+    }
+
+    if (s + n <= d || d + n <= s) {
+        /* No overlap, use memcpy */
+        return memcpy(d, s, n);
+    }
+
+    if (d < s) {
+        /* Copy from start to end */
+        while (n--) {
+            *d++ = *s++;
+        }
+    } else {
+        /* Copy from end to start */
+        d += n - 1;
+        s += n - 1;
+        while (n--) {
+            *d-- = *s--;
+        }
+    }
+
+	return dest;
+}

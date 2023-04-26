@@ -18,7 +18,7 @@ void replace_substr(char *str, char *substr, char *replace)
 {
 		if (_strncmp(str + i, substr, substr_len) == 0)
 {
-			memmove(str + i + replace_len, str + i
+			_memmove(str + i + replace_len, str + i
 + substr_len, str_len - i - substr_len + 1);
 			_memcpy(str + i, replace, replace_len);
 			str_len += replace_len - substr_len;
@@ -47,7 +47,7 @@ void replace_all(char *str, char *substr, char *replace)
 
 	while (pos != NULL)
 {
-		memmove(pos + replace_len, pos + substr_len, str
+		_memmove(pos + replace_len, pos + substr_len, str
 + str_len - pos - substr_len + 1);
 		_memcpy(pos, replace, replace_len);
 		str_len += replace_len - substr_len;
