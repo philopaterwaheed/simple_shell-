@@ -28,16 +28,29 @@ while (token)
 token = strtok(NULL, " \n");
 words++;
 }
+free(line_copy);
 arguments = malloc(words *sizeof(char *));
+if (!arguments)
+{
+_eputs("Failed to allocate");
+return (NULL);
+}
 token = strtok(line, " \n");
 for (i = 0 ; token != NULL ; i++)
 {
 arguments[i] = malloc(sizeof(char) * (_strlen(token) + 1));
 /* allocate memmory into of the i'th element */
+if (!arguments[i])
+{
+_eputs("Failed to allocate");
+while (i--)
+free(arguments[i]);
+free(arguments);
+return (NULL);
+}
 _strcpy(arguments[i], token);
 /*puts the token inside the array*/
 token = strtok(NULL, " \n");
 }
-free(line_copy);
 return (arguments);
 }

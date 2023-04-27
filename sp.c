@@ -24,6 +24,7 @@ if (result == -1)
 perror("setenv");
 }
 }
+free(arguments);
 }
 /**
 * unsetenv_ - Unsets an existing environment variable
@@ -49,6 +50,7 @@ if (result == -1)
 perror("unsetenv");
 }
 }
+free(arguments);
 }
 /**
 * cd - Changes the current working directory
@@ -87,6 +89,7 @@ else
 set_env_variable("OLDPWD", getenv("PWD"), 1);
 set_env_variable("PWD", new_dir, 1);
 }
+free(arguments);
 }
 /**
 * __exit - Exits the shell
@@ -127,4 +130,5 @@ else
 {
 exit(0);
 }
+free(arguments);
 }

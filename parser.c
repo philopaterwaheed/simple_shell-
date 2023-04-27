@@ -41,7 +41,7 @@ void dollar(char **arg)
 		{
 		replace_all(arg[c], var, "");
 		}
-
+free(var);
 		 dollar = strfind(arg[c], '$', dollar - arg[c] + i);
 	}
 	}

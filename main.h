@@ -59,5 +59,6 @@ int  set_env_variable(char *name, char *value, int overwrite);
 int _unsetenv(char *name);
 void *_memmove(void *dest, const void *src, size_t n);
 int _sprintf(char *buffer, const char *format, ...);
+void free_string_array(char **array);
 #endif
 

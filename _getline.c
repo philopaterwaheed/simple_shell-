@@ -22,6 +22,7 @@ else
 line_read = getline(&line, &size, stdin);
 if (line_read == -1)
 {
+free(line);
 return (NULL);
 }
 }
@@ -29,6 +30,7 @@ if (line_read == -1 && !piped)
 {
 _eputs("Exiting shell....\n");
 /*makes working  = -1 so that shell exits*/
+free(line);
 return (NULL);
 }
 return (line);

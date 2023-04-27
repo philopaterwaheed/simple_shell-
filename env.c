@@ -113,6 +113,7 @@ new_env[j++] = environ[i];
 }
 }
 new_env[j] = NULL;
+free(environ);
 environ = new_env;
 return (0);
 }
@@ -137,6 +138,7 @@ int _putenv(char *string)
 	{
 	if (!_strncmp(*env, string, len) && (*env)[len] == '=')
 	{
+free(*env);
 		*env = dup;
 		return (0);
 	}
