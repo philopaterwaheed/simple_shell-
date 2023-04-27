@@ -10,8 +10,7 @@ char **token(char *line)
 {
 char **arguments;
 char *line_copy, *token;
-size_t words = 0;
-int i;
+size_t words = 0;int i;
 line_copy = malloc(sizeof(char) * (_strlen(line) + 1));
 if (!line_copy)
 {
