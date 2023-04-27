@@ -11,7 +11,7 @@ size_t size = 0;
 /* to store the size of the line */
 if (isatty(STDIN_FILENO))
 {
-_eputs("($) ");
+_eputs("$ ");
 fflush(stdout);
 line_read = getline(&line, &size, stdin);
 if (line_read == 1)
