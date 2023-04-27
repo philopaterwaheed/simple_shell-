@@ -70,7 +70,7 @@ if (var == NULL)
 {
 return (-1);
 }
-sprintf(var, "%s=%s", name, value);
+_sprintf(var, "%s=%s", name, value);
 result = _putenv(var);
 if (result != 0)
 {

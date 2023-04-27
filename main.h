@@ -58,5 +58,6 @@ char *_strchr(char *str, int ch);
 int  set_env_variable(char *name, char *value, int overwrite);
 int _unsetenv(char *name);
 void *_memmove(void *dest, const void *src, size_t n);
+int _sprintf(char *buffer, const char *format, ...);
 #endif
 

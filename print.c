@@ -35,3 +35,29 @@ void print_to_stderr(const char *message)
 {
 write(STDERR_FILENO, message, strlen(message));
 }
+/**
+ * _sprintf - Formats and prints a string to a buffer
+ *
+ * @buffer: The buffer to write the formatted string to
+ * @format: The format string
+ * @...: Additional arguments to format
+ *
+ * Return: The number of characters written, or a negative value on error
+ */
+int _sprintf(char *buffer, const char *format, ...)
+{
+    va_list args;
+    int count;
+
+    va_start(args, format);
+    count = vsprintf(buffer, format, args);
+    va_end(args);
+
+    if (count < 0)
+    {
+        /* Error occurred */
+        return -1;
+    }
+
+    return (count);
+}
