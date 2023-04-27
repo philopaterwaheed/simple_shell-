@@ -138,7 +138,7 @@ int _putenv(char *string)
 	{
 	if (!_strncmp(*env, string, len) && (*env)[len] == '=')
 	{
-free(*env);
+		free(*env);
 		*env = dup;
 		return (0);
 	}

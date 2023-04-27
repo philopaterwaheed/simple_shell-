@@ -14,13 +14,11 @@ size_t words = 0;
 int i;
 line_copy = malloc(sizeof(char) * (_strlen(line) + 1));
 if (!line_copy)
-/*on memory falling */
 {
 _eputs("Failed to allocate");
 return (NULL);
 }
 _strcpy(line_copy, line);
-/*make a copy of the line to edit it*/
 token = strtok(line_copy, " \n");
 words++;
 while (token)
@@ -39,7 +37,6 @@ token = strtok(line, " \n");
 for (i = 0 ; token != NULL ; i++)
 {
 arguments[i] = malloc(sizeof(char) * (_strlen(token) + 1));
-/* allocate memmory into of the i'th element */
 if (!arguments[i])
 {
 _eputs("Failed to allocate");
@@ -49,7 +46,6 @@ free(arguments);
 return (NULL);
 }
 _strcpy(arguments[i], token);
-/*puts the token inside the array*/
 token = strtok(NULL, " \n");
 }
 return (arguments);
