@@ -41,11 +41,12 @@ if (execve(excommand, arguments, NULL) == -1)
 perror(arguments[0]);
 };
 }
-exit(42);
+exit(0);
 }
 else
 {
 waitpid (pid, &status, 0);
+exit(0);
 }
 }
 /**
