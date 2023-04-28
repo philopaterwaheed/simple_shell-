@@ -4,7 +4,7 @@
 *
 * @argument: Array of arguments passed to the function
 *
-* This function takes an array of arguments that includes
+* Thiis function takes an array of arguments that includes
 * the name and value of the environment variable
 * to set, and sets or updates the environment variable accordingly.
 * If the environment variable is successfully set or updated,
