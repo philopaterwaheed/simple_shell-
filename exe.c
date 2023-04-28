@@ -19,7 +19,7 @@ void exe(char **arguments)
 {
 pid_t pid;
 char *command = NULL, *excommand;
-int status;
+int status = 0;
 if (sp(arguments[0]) != -1)
 {
 spexe(sp(arguments[0]), arguments);
@@ -36,7 +36,7 @@ if (arguments)
 {
 command = arguments[0];
 excommand = location(command);
-if (execve(excommand, arguments, NULL) == -1)
+if (execve(excommand, arguments, environ) == -1)
 {
 perror(arguments[0]);
 };
@@ -46,7 +46,6 @@ exit(0);
 else
 {
 waitpid (pid, &status, 0);
-exit(0);
 }
 }
 /**
