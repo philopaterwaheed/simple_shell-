@@ -1,55 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
-#include <errno.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+#define MAX_COMMAND_LENGTH 1024
+#define PROMPT "> "
 
 /**
- * main - Entry point for the simple shell program
+ * main - Entry point of the simple shell program.
  *
- * Return: Always 0 on success.
+ * This function repeatedly prompts
+ * the user for a single-word command
+ * and executes it by creating a child
+ * process with fork() and replacing
+ * it with the specified command using execvp().
+ * The function also handles
+ * errors, including a command not found error
+ * and a terminated by signal error.
+ * The program exits gracefully when the end-of-file
+ * condition (CTRL+D) is encountered.
+ *
+ * Return: 0 on successful completion.
  */
 int main(void)
 {
-char *buffer = NULL;
-size_t bufsize = 0;
-ssize_t nread;
-char *args[2];
-int status;
-
-while (1)
+char command[MAX_COMMAND_LENGTH];
+while (printf("%s", PROMPT), fgets(command, MAX_COMMAND_LENGTH, stdin))
 {
-printf("$ ");
-nread = getline(&buffer, &bufsize, stdin);
-/* Handle end of file condition */
-if (nread == -1)
+/* Remove trailing newline character */
+command[strcspn(command, "\n")] = '\0';
+pid_t pid = fork();
+if (pid == -1)
 {
-if (feof(stdin))
+perror("fork");
+exit(EXIT_FAILURE);
+}
+else if (pid == 0)
 {
-printf("\n");
-exit(EXIT_SUCCESS);
+/* Child process */
+execlp(command, command, (char *) NULL);
+perror("execlp");
+exit(EXIT_FAILURE);
 }
 else
 {
-perror("getline");
-exit(EXIT_FAILURE);
-}
-}
-/* Remove trailing newline character */
-if (buffer[nread - 1] == '\n')
+/* Parent process */
+int status;
+waitpid(pid, &status, 0);
+if (WIFEXITED(status) && WEXITSTATUS(status) == 127)
 {
-buffer[nread - 1] = '\0';
+/* Executable not found */
+fprintf(stderr, "Error: command not found: %s\n", command);
 }
-/* Parse good  command */
-args[0] = buffer;
-args[1] = NULL;
-/* Execute hihi command */
-if (execve(args[0], args, NULL) == -1)
+else if (WIFSIGNALED(status))
 {
-printf("Error: %s\n", strerror(errno));
+/* Terminated by signal */
+fprintf(stderr, "Error: process terminated by signal %d\n", WTERMSIG(status));
 }
 }
-free(buffer);
-exit(status);
+}
+return (0);
 }
 
