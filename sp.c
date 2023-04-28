@@ -4,7 +4,7 @@
 *
 * @argument: Array of arguments passed to the function
 *
-* This function takes an array of arguments that includes
+* Thiis function takes an array of arguments that includes
 * the name and value of the environment variable
 * to set, and sets or updates the environment variable accordingly.
 * If the environment variable is successfully set or updated,
@@ -86,10 +86,10 @@ perror("cd");
 }
 else
 {
-set_env_variable("OLDPWD", getenv("PWD"), 1);
+set_env_variable("OLDPWD", _getenv("PWD"), 1);
 set_env_variable("PWD", new_dir, 1);
 }
-free(arguments);
+
 }
 /**
 * __exit - Exits the shell
@@ -108,26 +108,37 @@ void __exit(void *argument)
 char **arguments = (char **)argument;
 if (arguments[1] && !arguments[2])
 {
-int *num;
+int x =5; 
+int *num =&x;
+
 num = ctoi(arguments[1]);
 if (num)
+{
+free_string_array(arguments);
 _exit(*num);
+}
 else if (array_size(arguments) > 2)
 {
 	_eputs("too many arguments");
+	free_string_array(arguments);
+	free(num);
 	exit(2);
 }
 else
 {
-_eputs("exit: ");
-_eputs(arguments[1]);
-_eputs(": numeric argument required");
+print_to_stderr("exit: ");
+print_to_stderr("Illegal number: ");
+print_to_stderr(arguments[1]);
 free(num);
+free_string_array(arguments);
 exit(2);
 }
+free(num);
 }
 else
 {
+free_string_array(arguments);
+
 exit(0);
 }
 free(arguments);
