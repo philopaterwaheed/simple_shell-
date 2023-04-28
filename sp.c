@@ -108,7 +108,9 @@ void __exit(void *argument)
 char **arguments = (char **)argument;
 if (arguments[1] && !arguments[2])
 {
-int *num;
+int x =5; 
+int *num =&x;
+
 num = ctoi(arguments[1]);
 if (num)
 {
