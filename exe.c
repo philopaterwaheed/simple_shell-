@@ -47,6 +47,10 @@ else
 {
 waitpid (pid, &status, 0);
 }
+if(!isatty(STDIN_FILENO))
+{
+    __exit(arguments);
+}
 }
 /**
  * sp - identifies the index of a command in an array of commands
