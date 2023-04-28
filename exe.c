@@ -41,6 +41,7 @@ if (execve(excommand, arguments, NULL) == -1)
 perror(arguments[0]);
 };
 }
+exit(42);
 }
 else
 {

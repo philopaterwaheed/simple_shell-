@@ -86,10 +86,10 @@ perror("cd");
 }
 else
 {
-set_env_variable("OLDPWD", getenv("PWD"), 1);
+set_env_variable("OLDPWD", _getenv("PWD"), 1);
 set_env_variable("PWD", new_dir, 1);
 }
-free(arguments);
+
 }
 /**
 * __exit - Exits the shell
@@ -111,10 +111,15 @@ if (arguments[1] && !arguments[2])
 int *num;
 num = ctoi(arguments[1]);
 if (num)
+{
+free_string_array(arguments);
 _exit(*num);
+}
 else if (array_size(arguments) > 2)
 {
 	_eputs("too many arguments");
+	free_string_array(arguments);
+	free(num);
 	exit(2);
 }
 else
@@ -123,11 +128,15 @@ _eputs("exit: ");
 _eputs(arguments[1]);
 _eputs(": numeric argument required");
 free(num);
+free_string_array(arguments);
 exit(2);
 }
+free(num);
 }
 else
 {
+free_string_array(arguments);
+
 exit(0);
 }
 free(arguments);
