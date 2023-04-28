@@ -124,9 +124,9 @@ else if (array_size(arguments) > 2)
 }
 else
 {
-_eputs("exit: ");
-_eputs(arguments[1]);
-_eputs(": numeric argument required");
+print_to_stderr("exit: ");
+print_to_stderr("Illegal number: ");
+print_to_stderr(arguments[1]);
 free(num);
 free_string_array(arguments);
 exit(2);
